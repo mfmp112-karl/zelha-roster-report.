@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method · Zelha Roster Report</title>
+<meta name="description" content="Which of Zelha Fitness's TikTok creators are worth contracting as influencers — a data analysis of gym content, engagement and reposts.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <span class="brand"><span class="mark">ASKSIDNEY</span> Zelha Roster <span class="sub">Content &amp; Traffic Engine</span></span>
+  <nav class="nav"><a href="index.html">Overview</a><a href="creators.html">Creators</a><a href="growth.html">Growth</a><a href="content.html">Content</a><a href="reposts.html">Reposts</a><a href="methodology.html" aria-current="page">Method</a></nav>
+</div></header>
+<main>
+
+  <section class="section" style="margin-top:40px">
+    <h2>How this was measured</h2>
+    <p class="lede">Everything here comes from public TikTok metrics, computed the same way for every
+      account. Where a finding could be read as advice, it carries a significance verdict so a small
+      sample can't masquerade as a trend.</p>
+    <div class="panel"><dl class="deflist"><dt>Data source</dt><dd>yt-dlp flat enumeration of each public profile — views, likes, comments, shares, caption, date, duration. No logins, no paid APIs, no video downloads. 840 videos across the six accounts.</dd><dt>Gym relevance</dt><dd>A transparent keyword lexicon (English + Swahili/Sheng, plus spin/Zumba/class terms) tags each video as fitness or not, from its caption and hashtags. 533 of the videos qualified as gym-relevant.</dd><dt>Engagement rate</dt><dd>View-weighted likes + comments + shares as a percentage of views — size-independent, so it compares fairly across very different follower counts.</dd><dt>Views per 1k followers</dt><dd>Median gym-video views ÷ followers × 1,000. Surfaces content that travels beyond its existing audience — the clearest influencer signal.</dd><dt>Significance</dt><dd>Each “gym vs own feed” gap is tested with Welch&#x27;s t-test on log(views). Verdicts: strong (p&lt;0.01), moderate (p&lt;0.05), or too early to tell. Small accounts almost always read “too early” — by design, not by fault.</dd><dt>Reposts</dt><dd>Captured from Zelha&#x27;s logged-in “Reposts” tab (not exposed to logged-out visitors or the public API). Each repost links to the original creator — that&#x27;s the proof-of-fit.</dd><dt>Follower counts</dt><dd>Read from each profile header (server-rendered, so public). Point-in-time on 23 Jul 2026; @__kama.u&#x27;s header didn&#x27;t render a count, so its per-1k figure is blank.</dd></dl></div>
+
+    <h3 style="font-size:1.05rem;margin:34px 0 12px">Honest limitations</h3>
+    <div class="grid-2">
+      <div class="note"><strong>Public metrics only.</strong> Watch-time, traffic sources and audience
+        demographics are owner-only in TikTok Studio and can't be seen for anyone else — no tool can.</div>
+      <div class="note"><strong>Small samples.</strong> @__kama.u (4 videos) and @cialoziofitness (17)
+        are too small for statistical verdicts; treat their rates as directional, not settled.</div>
+      <div class="note"><strong>Caption-based relevance.</strong> The gym filter reads captions and
+        hashtags, not the video itself, so a wordless workout clip with an off-topic caption can be missed.</div>
+      <div class="note"><strong>Point-in-time.</strong> Pulled 23 Jul 2026. Views and followers keep moving;
+        re-run to refresh.</div>
+    </div>
+
+    <h3 style="font-size:1.05rem;margin:34px 0 12px">Reproduce it</h3>
+    <div class="panel" style="font-family:var(--mono);font-size:0.85rem;line-height:1.9;color:var(--ink-soft)">
+      <div><span class="muted"># pull + score the roster, build the workbook</span></div>
+      <div>python roster.py @zelhafitness @__kama.u @jayjnrke @cialoziofitness @its.beckya @coach.martin6</div>
+      <div style="margin-top:10px"><span class="muted"># refresh reposts (needs a logged-in TikTok session) + followers</span></div>
+      <div>python analysis/capture_reposts.py @zelhafitness --roster @jayjnrke @its.beckya …</div>
+    </div>
+  </section>
+
+</main>
+<footer class="site-footer"><div class="wrap">
+  <span>Generated 23 Jul 2026 · public TikTok metrics only</span>
+  <span>AskSidney OS · TikTok Content Analyser</span>
+</div></footer>
+</body>
+</html>
